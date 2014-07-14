@@ -3444,6 +3444,14 @@ All this is done for any sub-level being entered.
   content: "\f174";
 }
 
+.fa-weibo:before {
+  content: "\f18a";
+}
+
+.fa-weibo-square:before {
+  content: "\f18b";
+}
+
 .fa-long-arrow-down:before {
   content: "\f175";
 }
