@@ -1,0 +1,22 @@
+---
+layout: pageminimal
+title: Post Index
+permalink: /posts/index.html
+description: "An archive of all posts."
+---
+
+
+  {% for post in site.posts %}  
+  {% unless post.next %}
+	<h2 id="{{ tag[0] }}" style="color: #c91b26">{{ post.date | date: '%Y' }}</h2>
+    {% else %}
+      {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+      {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
+      {% if year != nyear %}
+       	<h2 id="{{ tag[0] }}" style="color: #c91b26">{{ post.date | date: '%Y' }}</h2>
+      {% endif %}
+    {% endunless %}
+	<ul class="post-list">
+		<li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}<span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%B %d, %Y" }}</time></a></li>
+	</ul>
+  {% endfor %}

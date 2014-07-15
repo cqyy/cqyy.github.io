@@ -16,7 +16,7 @@ fin_color:        "255,255,255"
 # Change url to your domain. Leave localhost server or blank when working locally.
 # or use the hint from http://jekyllrb.com/docs/github-pages/ to keep this the same 
 # whether working locally or remotely. Start Jekyll with: jekyll serve --baseurl ''
-url:       		   http://www.cqyuanye.com
+url:       		   http://localhost:4000
 baseurl:			/hmfaysal-omega-theme
 
 # Owner/author information
@@ -58,11 +58,13 @@ links:
     url: /categories
   - title: Tags
     url: /tags
-  - title: About Me
-    url: /about
+  - title: Posts
+    url: /posts
   - title: CSDN
     url: http://blog.csdn.net/kalikrick
     external: true
+  - title: About Me
+    url: /about
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    Asia/Chongqing
