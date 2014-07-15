@@ -4,10 +4,7 @@ title: Java小趣视频
 description: "Javazone拍摄的关于java的有趣视频"
 modified: 2014-07-14
 tags: [java,fun]
-image:
-  feature: abstract-25.jpg
-  credit: dargadgetz
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+category:  Javadevelopment
 comments: true
 share: true
 ---

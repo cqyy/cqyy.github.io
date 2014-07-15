@@ -1,117 +1,335 @@
-# HPSTR Jekyll Theme
+# HMFAYSAL OMEGA THEME
 
-They say three times the charm, so here is another free responsive Jekyll theme for you. I've learned a ton since open sourcing my first two themes [on Github](http://github.com/mmistakes), and wanted to try a few new things this time around. If you've used my previous themes most of this should be familiar territory...
+Project name:	HMFAYSAL OMEGA THEME  
+Author:	Hossain Mohd Faysal  
+Project type:	The Coolest Theme for Jekyll 
+License:	MIT License 
+  
+HMFAYSAL OMEGA is a minimalist, beautiful, responsive theme for Jekyll designed for engineers as well as writers who want their content to take front and center. This theme elegantly wraps each page and post with featured images complementing the content. It was built -- by Engineer slash Mathematician [Hossain Mohd Faysal](http://alum.mit.edu/www/hmfaysal/).
 
-## What HPSTR brings to the table:
+The theme features:
 
-* Responsive templates for post, page, and post index `_layouts`. Looks great on mobile, tablet, and desktop devices.
-* Gracefully degrades in older browsers. Compatible with Internet Explorer 8+ and all modern browsers.  
-* Modern and minimal design.
-* Sweet animated menu.
-* Readable typography to make your words shine.
-* Support for large images to call out your favorite posts.
-* Comments powered by [Disqus](http://disqus.com) if you choose to enable.
-* Social Sharing links for Facebook, Twitter, and Google+ if you choose to enable.
-* Simple and clear permalink structure.
-* [Open Graph](https://developers.facebook.com/docs/opengraph/) and [Twitter Cards](https://dev.twitter.com/docs/cards) support for a better social sharing experience.
-* Simple [custom 404 page](http://mmistakes.github.io/hpstr-jekyll-theme/404.html) to get you started.
-* Stylesheets for Pygments and Coderay [syntax highlighting](http://mmistakes.github.io/hpstr-jekyll-theme/code-highlighting-post/) to make your code examples look snazzy
-* [Grunt](http://gruntjs.com) build script for easy theme development
-* [Available in Spanish](https://github.com/cruznick/hpstr-jekyll-theme/tree/es). Thanks [@cruznick](https://github.com/cruznick)!
+* Twitter Bootstrap 3
+* Option to set featured image that wraps your post in header and footer
+* Custom Javascript to emphasize the first paragraph `p:first-child` of your post
+* Variable templates for articles, quotation, video, photo and status updates (post types)
+* Display Equations via Native MathJax Support
+* Plugin-free/Github Pages Deployment Ready
+* Read time Calculator: Calculation of post read-time based on word count (Via Liquid Tags instead of a plugin)
+* Complex pagination script if you decide to turn pagination on
+* CSS3 transitions for better performance 
+* Ability to turn of animations in _config.yml
+* Readable typography to make your words shine
+* Disqus comments if you choose to enable
+* Simple and clear permalink structure
+* Footer Menu
+* SVG graphics
+* Google Fonts
+* 361 Fontawesome icons
+* Tags for [Open Graph](https://developers.facebook.com/docs/opengraph/) and [Twitter Cards](https://dev.twitter.com/docs/cards) for a better social sharing experience
+* Beautifully crafted [404 page](http://hmfaysal.github.io/hmfaysal-omega-theme/404.html)
+* Custom [categories](http://hmfaysal.github.io/hmfaysal-omega-theme/categories/) and [tags](http://hmfaysal.github.io/hmfaysal-omega-theme/tags/) pages for viewers pleasure
+* Stylesheets for Pygments and Coderay to make your code examples look snazzy
+* Simple search that overlays results based on post title
+* Sitemap for search engines
+* Designed by an Electrical Engineer
 
-![HPSTR Theme Preview screenshot](http://mmistakes.github.io/hpstr-jekyll-theme/images/hpstr-jekyll-theme-preview.jpg)
+For a full list of features, visit [this link](http://hmfaysal.github.io/hmfaysal-omega-theme/theme-setup/about-hmfaysal-omega/)
 
----
+![screenshot of HMFAYSAL OMEGA Theme](https://raw.github.com/hmfaysal/hmfaysal-omega-theme/gh-pages/images/hmfaysal-omega-preview.jpg)
 
-General notes and suggestions for customizing **HPSTR**.
+## Basic Setup for new Jekyll site
 
-## Basic Setup for a new Jekyll site
-
-1. [Install Bundler](http://bundler.io) `gem install bundler` and then install [Jekyll](http://jekyllrb.com) and all dependencies `bundle install`.
-2. Fork the [HPSTR Jekyll Theme repo](https://github.com/mmistakes/hpstr-jekyll-theme/fork).
-3. Clone the repo you just forked and rename it.
+1. [Install Jekyll](http://jekyllrb.com) and read through [this installation instructions](http://hmfaysal.github.io/hmfaysal-omega-theme/theme-setup/installing-jekyll-on-windows/) if you haven't already.
+2. Fork the [HMFAYSAL OMEGA Theme](https://github.com/hmfaysal/hmfaysal-omega-theme/fork)
+3. Clone the repo you just forked.
 4. Edit `_config.yml` to personalize your site.
 5. Check out the sample posts in `_posts` to see examples for pulling in large feature images, assigning categories and tags, and other YAML data.
 6. Read the documentation below for further customization pointers and documentation.
 
-[Demo the Theme](http://mmistakes.github.io/hpstr-jekyll-theme)
 
 **Pro-tip:** Delete the `gh-pages` branch after cloning and start fresh by branching off `master`. There is a bunch of garbage in `gh-pages` used for the theme's demo site that I'm guessing you don't want on your site.
 
 ---
 
-## Setup for an Existing Jekyll site
+## Setup for Existing Jekyll site
 
-1. Clone the following folders: `_includes`, `_layouts`, `assets`, and `images`.
-2. Clone the following files and personalize content as need: `about.md`, `posts.html`, `index.html`, `tags.html`, and `feed.xml`.
-3. Set the following variables in your `config.yml` file:
+1. Clone the following folders: `_includes`, `_layouts`, `plugins`, `assets`, and `images`.
+2. Clone the following files and personalize content as need: `about.md`, `technical-details.md`, `theme-setup.md`, `index.html`, `categories.html`, `tags.html`, `feed.xml`, and `sitemap.xml`.
+3. Set the following variables in your `_config.yml` file:
 
 ``` yaml
 title:            Site Title
-description:      Describe your website here.
+description:      Site description for the metas.
+logo:             site-logo.png
 disqus_shortname: shortname
-# Your site's domain goes here. When working locally use localhost server leave blank
-# PS. If you set this wrong stylesheets and scripts won't load and most links will break.
-# PPS. If you leave it blank for local testing home links won't work, they'll be fine for live domains though.
-url:              http://localhost:4000
+# Assign a default image for your site's header and footer
+default_bg:       some-image.jpg
+search:           true
+share:            true
+# Read Time is a calculator tp provide post read-time based on word count. Usage is recommended.
+readtime:         true
+# Turn on or off the fin animations in the header and footer
+animated_fins:    true
+# Specify the fin color in RGB value
+fin_color:        "255,255,255"
+# Change url to your domain. Leave localhost server or blank when working locally.
+url:              "http://localhost:4000"
+
 
 # Owner/author information
 owner:
   name:           Your Name
-  avatar:         avatar.jpg
-  bio:            "Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice."
-  email:          you@email.com
+  avatar:         your-photo.jpg
+  email:          your@email.com
+  # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
+  description:	  Some Details about yourself
   # Social networking links used in footer. Update and remove as you like.
-  twitter:        
-  facebook:       
-  github:         
-  stackexchange:  
-  linkedin:       
-  instagram:      
-  flickr:         
-  tumblr:         
+  # To register at HMFAYSAL SOCIAL, visit http://social.hmfaysal.tk
+  twitter:
+  facebook:
+  github:
+  linkedin:
+  instagram:
+  tumblr:
+  hmfaysalsocial:
   # For Google Authorship https://plus.google.com/authorship
-  google_plus:    
+  google_plus:    "http://plus.google.com/123123123123132123"
 
 # Analytics and webmaster tools stuff goes here
-google_analytics:   
-google_verify:      
+google_analytics:
+google_verify:
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:         
+bing_verify:
 
 # Links to include in top navigation
 # For external links add external: true
 links:
-  - title: Theme Setup
-    url: /theme-setup
-  - title: External Link
-    url: http://mademistakes.com
-    external: true
+  - title: Home
+    url: /
+    external: false
+    icon: home
+  - title: <i class="icon-book"></i> Documentation
+    url: /documentation
+  - title: Categories
+    url: /categories
+  - title: Tags
+    url: /tags
+  - title: Faysal who?
+    url: /hossain-mohd-faysal
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    America/New_York
 future:      true
 pygments:    true
 markdown:    kramdown
+paginate:    6
+paginate_path: "page:num"
 
-# Amount of posts to show on home page
-paginate: 5
+# https://github.com/mojombo/jekyll/wiki/Permalinks
+permalink:   /:categories/:title
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: false
+
+  coderay:
+    coderay_line_numbers: 
+    coderay_line_numbers_start: 1
+    coderay_tab_width: 4
+    coderay_bold_every: 10
+    coderay_css: class
 ```
 
 ---
 
-## More Theme Setup Goodness
+## Post Front Matter YAML
 
-To learn more about how to customize the theme, include feature images in posts, use the Grunt build script, and some other junk, [read up here](http://mmistakes.github.io/hpstr-jekyll-theme/theme-setup/).
+HMFAYSAL OMEGA uses variable post templates for articles, quotation, video, photo and status updates. 
+
+A new blog post should have the following structure to utilise the themes functions
+
+``` yaml
+---
+layout: post
+title: "Some Title"					# Title of the post
+description: Some description		# Description of the post, used for Facebook Opengraph & Twitter
+headline: Some headline				# Will appear in bold letters on top of the post
+modified: YYYY-MM-DD				# Date
+category: personal
+tags: []
+image: 
+  feature: some-image.jpg
+comments: true
+mathjax:
+---
+```
+
+A new status should have the following structure to utilise the themes functions
+
+``` yaml
+---
+layout: post
+type: status                # ! Important
+title: "Some Title"         # Title of the post
+description: Some description   # Description of the post, used for Facebook Opengraph & Twitter
+headline: Some headline       # Will appear in bold letters on top of the post
+modified: YYYY-MM-DD        # Date
+category: personal
+tags: []
+image: 
+  feature: some-image.jpg
+comments: true
+mathjax:
+---
+```
+
+A new quotation post should have the following structure to utilise the themes functions
+
+``` yaml
+---
+layout: post
+type:  quote                # ! Important
+title: "Some Title"         # Title of the post
+description: Some description   # Description of the post, used for Facebook Opengraph & Twitter
+headline: Some headline       # Will appear in bold letters on top of the post
+modified: YYYY-MM-DD        # Date
+category: personal
+tags: []
+image: 
+  feature: some-image.jpg
+comments: true
+mathjax:
+---
+```
+
+A new video post should have the following structure to utilise the themes functions
+
+``` yaml
+---
+layout: post
+type:  video                # ! Important
+title: "Some Title"         # Title of the post
+description: Some description   # Description of the post, used for Facebook Opengraph & Twitter
+headline: Some headline       # Will appear in bold letters on top of the post
+modified: YYYY-MM-DD        # Date
+category: personal
+tags: []
+image: 
+  feature: some-image.jpg
+comments: true
+mathjax:
+---
+```
+
+A new photo post should have the following structure to utilise the themes functions. By default, the featured image is shown on the blog index, but if you want to display another photo, you can choose to do so :)
+
+``` yaml
+---
+layout: post
+type:  photo                # ! Important
+photo: some-image.jpg 		# In case you do not want the featured image to display on the front page
+title: "Some Title"         # Title of the post
+description: Some description   # Description of the post, used for Facebook Opengraph & Twitter
+headline: Some headline       # Will appear in bold letters on top of the post
+modified: YYYY-MM-DD        # Date
+category: personal
+tags: []
+image: 
+  feature: some-image2.jpg
+comments: true
+mathjax:
+---
+```
+
+---
+
+## Folder Structure
+``` bash
+HMFAYSAL-OMEGA-THEME
+│
+│
+├───assets
+│   ├───css
+│   │       bootstrap.css
+│   │       style.css
+│   │
+│   ├───font
+│   │       fontawesome─webfont.svg
+│   │       fontawesome─webfontd41d.eot
+│   │       fontawesome─webfontf77b.eot
+│   │       fontawesome─webfontf77b.ttf
+│   │       fontawesome─webfontf77b.woff
+│   │
+│   ├───fonts
+│   │   ├───glyphicons─halflings─regular.eot
+│   │   │       index.html
+│   │   │
+│   │   ├───glyphicons─halflings─regular.svg
+│   │   │       index.html
+│   │   │
+│   │   ├───glyphicons─halflings─regular.ttf
+│   │   │       index.html
+│   │   │
+│   │   └───glyphicons─halflings─regular.woff
+│   │           index.html
+│   │
+│   └───js
+│       │   script.js
+│       │   scripts.min.js
+│       │   waypoints.min.js
+│       │   _main.js
+│       │
+│       ├───plugins
+│       │       jquery.fitvids.js
+│       │       jquery.magnific─popup.js
+│       │       simpleJekyllSearch.js
+│       │
+│       └───vendor
+│               jquery─1.9.1.min.js
+│
+├───images
+│
+├───_includes
+│       browser─upgrade.html
+│       disqus_comments.html
+│       footer.html
+│       head.html
+│       header.html
+│       scripts.html
+│       signoff.html
+│
+├───_layouts
+│       home.html
+│       page.html
+│       post.html
+│
+└───_posts
+```
 
 ---
 
 ## Questions?
 
-Having a problem getting something to work or want to know why I setup something in a certain way? Ping me on Twitter [@mmistakes](http://twitter.com/mmistakes) or [file a GitHub Issue](https://github.com/mmistakes/hpstr-jekyll-theme/issues/new). And if you make something cool with this theme feel free to let me know.
+Having a problem getting something to work or want to know why I setup something in a certain way? Ping me on Twitter [@hmfaysal](http://twitter.com/hmfaysal) or [file a GitHub Issue](https://github.com/hmfaysal/hmfaysal-omega-theme/issues/new).
+
+---
+
+## Requests?
+
+If you have some specific requests for this theme, or if you need help custom coding some elements, message me on Twitter [@hmfaysal](http://twitter.com/hmfaysal) or email me at [hmfaysal@alum.mit.edu](mailto:hmfaysal@alum.mit.edu)
 
 ---
 
 ## License
 
-This theme is free and open source software, distributed under the [GNU General Public License](https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/LICENSE) version 2 or later. So feel free to to modify this theme to suit your needs. 
+This theme is free and open source software, distributed under the [The MIT License](LICENSE). So feel free to use this Jekyll theme on your site without linking back to me or using a disclaimer.
+
+If you'd like to give me credit somewhere on your blog or tweet a shout out to [@hmfaysal](https://twitter.com/hmfaysal), that would be pretty sweet.
+
+
+Warm Regards and Stay Creative,  
+Hossain Mohd. Faysal

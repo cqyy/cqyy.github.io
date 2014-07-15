@@ -4,14 +4,13 @@ title: 即将结束的大学
 description: "毕业前夕，随笔"
 modified: 2014-07-16
 tags: [life]
-image:
-  feature: abstract-17.jpg
-  credit: dargadgetz
-  creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+imagefeature: abstract-17.jpg
+category: Personal
 comments: true
 share: true
 ---
 
+-------
 四年大学其实只有三年，三年已经过了，还有一年安乐死。
 
 大学大师之谓也。我没见到大师，全是程序员。
