@@ -3,7 +3,7 @@ description:      "Little zone"
 logo:             omikron.png
 disqus_shortname: cqyuanye
 # Assign a default image for your site's header and footer
-default_bg:       default_bg1.jpg
+default_bg:       picture-11.jpg
 search:           true
 share:            true
 # Read Time is a calculator tp provide post read-time based on word count. Usage is recommended.
@@ -60,6 +60,9 @@ links:
     url: /tags
   - title: About Me
     url: /about
+  - title: CSDN
+    url: http://blog.csdn.net/kalikrick
+    external: true
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    Asia/Chongqing
