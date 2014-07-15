@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 字符串匹配的Boyer-Moore算法实现
-description: "Boyer-Moore算法不仅效率高，而且构思巧妙，容易理解。1977年，德克萨斯大学的Robert S. Boyer教授和J Strother Moore教授发明了这种算法。"
+description: "Boyer-Moore实现"
 modified: 2013-12-31
 tags: [java,算法]
 category:  Javadevelopment
@@ -9,8 +9,6 @@ imagefeature: picture-15
 comments: true
 share: true
 ---
-
-效率高，构思巧妙，易于理解。
 
 Boyer-Moore算法不仅效率高，而且构思巧妙，容易理解。1977年，德克萨斯大学的Robert S. Boyer教授和J Strother Moore教授发明了这种算法。
 
