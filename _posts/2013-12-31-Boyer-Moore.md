@@ -10,6 +10,8 @@ comments: true
 share: true
 ---
 
+效率高，构思巧妙，易于理解。
+
 Boyer-Moore算法不仅效率高，而且构思巧妙，容易理解。1977年，德克萨斯大学的Robert S. Boyer教授和J Strother Moore教授发明了这种算法。
 
 >算法介绍来自<a href = "http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html">阮一峰的网络日志</a>
@@ -29,6 +31,7 @@ Boyer-Moore算法不仅效率高，而且构思巧妙，容易理解。1977年�
 <img src = "/images/BoyerMoore/4.png"/>
 
 我们由此总结出"坏字符规则"：
+
 >后移位数 = 坏字符的位置 - 搜索词中的上一次出现位置
 
 如果"坏字符"不包含在搜索词之中，则上一次出现位置为 -1。
