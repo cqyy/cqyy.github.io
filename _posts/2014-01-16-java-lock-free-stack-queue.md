@@ -5,7 +5,7 @@ description: "解决并发冲突，除了传统的互斥机制之外，还可以
 modified: 2014-01-16
 tags: [java,并发,数据结构]
 category:  Javadevelopment
-imagefeature: picture-19
+imagefeature: abstract-19
 comments: true
 share: true
 ---
