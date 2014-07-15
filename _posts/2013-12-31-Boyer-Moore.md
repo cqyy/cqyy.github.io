@@ -144,7 +144,7 @@ public class BadCharMap extends HashMap<Byte,Integer> {
 
 - 好后缀表
 
-{% highlight java%}
+{% highlight java %}
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -298,6 +298,6 @@ public class BoyerMooreStringMatcher {
 	}
 }
 
-{ % endhighlight% }
+{% endhighlight %}
 
 `EOF`
