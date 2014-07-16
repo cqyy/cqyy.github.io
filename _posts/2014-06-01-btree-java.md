@@ -725,6 +725,7 @@ class BTreeInternalNode<K extends Comparable<K>> extends AbstractBTreeNode<K> {
 {% endhighlight %}
 
 ### 3.3 BTreeLeaf
+
 {% highlight java %}
 /**
  * Created by Kali on 14-5-26.
@@ -865,8 +866,8 @@ public class BTreeLeaf<K extends Comparable<K>> extends AbstractBTreeNode<K> {
 
 ### 3.4 BTree
 
-<span>
-<pre class ="prettyprint"><code>
+
+{% highlight java %}
 
 /**
  * Created by Kali on 14-5-26.
@@ -926,9 +927,8 @@ throw new IllegalArgumentException("degree mustn't < 2");
        return AbstractBTreeNode.BTreeToString(this.root);
     }
 }
+{% endhighlight %}
 
-</code></pre>
-</span>
 
 ### 3.5 测试
 
@@ -953,7 +953,7 @@ import static org.junit.Assert.assertTrue;
  *
  * @author <Authors name>
  * @version 1.0
- * @since <pre>六月 1, 2014</pre>
+ * @since 六月 1, 2014
  */
 public class BTreeTest {
 
