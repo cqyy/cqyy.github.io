@@ -3,6 +3,7 @@
 <script src="{{ site.url }}/assets/js/scripts.min.js"></script>
 <script type="text/javascript" src="{{ site.url }}/assets/js/waypoints.min.js"></script>
 <script type="text/javascript" src="{{ site.url }}/assets/js/script.js"></script>
+<script type="text/javascript" src="{{ site.url }}/assets/google-code-prettify/prettify.js"></script>
 
 <script type="text/javascript">
 
@@ -84,3 +85,11 @@ $("a#click-pages").click(function(){
 </script>
 {% endif %}
 {% if page.comments %}{% include disqus_comments.html %}{% endif %}
+
+<script type="text/javascript">
+    // 需要引入jQuery
+    $(document).ready(function() {
+        $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto');
+        prettyPrint();
+    });
+</script>
