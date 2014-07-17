@@ -5,7 +5,7 @@ description: red-black tree:concept and implementation
 modified: 2014-02-25
 tags: [java,数据结构]
 category:  Javadevelopment
-imagefeature: abstract-8.jpg
+imagefeature: cs-2.jpg
 comments: true
 share: true
 ---

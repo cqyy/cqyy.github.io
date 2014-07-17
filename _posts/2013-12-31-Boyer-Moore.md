@@ -5,7 +5,7 @@ description: "Boyer-Moore实现"
 modified: 2013-12-31
 tags: [java,算法]
 category:  Javadevelopment
-imagefeature: abstract-15.jpg
+imagefeature: cs-6.jpg
 comments: true
 share: true
 ---

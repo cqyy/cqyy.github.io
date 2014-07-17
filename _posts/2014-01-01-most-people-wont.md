@@ -5,7 +5,7 @@ description: "Most People Won't"
 modified: 2014-01-01
 tags: [life]
 category: Personal
-imagefeature: abstract-6.jpg
+imagefeature: 7.jpg
 comments: true
 share: true
 ---
