@@ -20,7 +20,7 @@ Java无锁队列与栈的实现
 
 例如,i++，它由读取i值，i+1运算，写回新值三个操作组成，如果无法保证这三个操作整体的原子性，就可能出问题。使用CAP实现示例如下：
 
-{% highlight java linenos %}
+{% highlight java  %}
 AtomicInteger i = new AtomicInteger(0);  
 int oldValue;  
 int newValue;  
@@ -53,7 +53,7 @@ do{
 
 以下是无锁队列的实现代码。
 
-{% highlight java linenos %}
+{% highlight java  %}
 package cn.yuanye.concurrence.LockFreeCollection;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -170,7 +170,7 @@ public class LockFreeQueue<V> {
 如下是栈的实现代码，相比队列要简单不少。
 
 
-{% highlight java linenos %}
+{% highlight java  %}
 package cn.yuanye.concurrence.LockFreeCollection;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -283,7 +283,7 @@ public class LockFreeQueue<V> {
 
 队列的测试。
 
-{% highlight java linenos %}
+{% highlight java  %}
 package cn.yuanye.concurrence.LockFreeCollection;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -393,7 +393,7 @@ public class LockFreeQueue<V> {
 
 栈的测试。 
 
-{% highlight java linenos %}
+{% highlight java  %}
 package cn.yuanye.concurrence.LockFreeCollection;
 
 import java.util.concurrent.atomic.AtomicInteger;
