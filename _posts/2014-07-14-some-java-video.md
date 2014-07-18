@@ -4,8 +4,8 @@ title: Java小趣视频
 description: "Javazone拍摄的关于java的有趣视频"
 modified: 2014-07-14
 tags: [java,fun]
-category:  Javadevelopment
-imagefeature: abstract-18.jpg
+category:  Fun
+imagefeature: abstract-16.jpg
 comments: true
 share: true
 ---

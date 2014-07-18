@@ -1,11 +1,11 @@
 ---
 layout: page
 title:	Java无锁队列与栈的实现 
-description: "解决并发冲突，除了传统的互斥机制之外，还可以使用无锁机制。无锁机制是一种乐观的，解决并发情况下竞争的机制。本篇主要介绍Java无锁机制的使用，以及实现无锁的队列和栈。"
+description: "Java无锁机制的使用，以及实现无锁的队列和栈。"
 modified: 2014-01-16
 tags: [java,并发,数据结构]
 category:  Javadevelopment
-imagefeature: abstract-19.jpg
+imagefeature: cs-4.jpg
 comments: true
 share: true
 ---
