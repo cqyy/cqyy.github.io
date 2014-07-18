@@ -23,6 +23,7 @@ Description: Awesome dude, awesome life
 <div id="main" class="content" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
     <div class="container">
         <div class="row">
+
             <article class="post col-md-8 col-md-offset-2 hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
             {% assign ert = page.content | strip_html | number_of_words | divided_by:180 %}
             {% assign ertremainder = page.content | strip_html | number_of_words | modulo:180 %}
@@ -63,6 +64,8 @@ Description: Awesome dude, awesome life
                     {% endif %}
                     </div>
         </div>
+		
+
                     <footer class="post-footer entry-meta">
                         {% if site.share %}{% include share.html %}{% endif %}
                         {% include signoff.html %} 
@@ -71,9 +74,12 @@ Description: Awesome dude, awesome life
             </article>
     </div>
 </div>
+
+
 {% include footer.html %}
 
     
 {% include scripts.html %} 
+
 </body>
 </html>
