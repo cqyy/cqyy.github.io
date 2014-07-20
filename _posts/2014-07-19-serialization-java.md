@@ -11,7 +11,7 @@ comments: true
 share: true
 ---
 
-> "普遍存在这样一种误解，认为程序员毫不费力就可以实现序列化。"
+> 普遍存在这样一种误解，认为程序员毫不费力就可以实现序列化。
 > <small><cite title = "effecitive java">《Effective Java》 </cite></small>
 
 ###关于序列化
@@ -48,24 +48,29 @@ public class BasicDemo {
         }
     }
  
-public static void main(String[] args) throws IOException, ClassNotFoundException {
-        Person person = new Person("Kitty");
-        File file = new File("d:\\person");
-        if (file.exists()){
-            file.createNewFile();
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
+        File file = new File("D:\\","output");
+        if (!file.exists()){
+            if (!file.getParentFile().exists()){
+                if (!file.getParentFile().mkdirs()){
+                    throw new IOException("Could not create folder " + file.getParent());
+                }
+            }
+            if (!file.createNewFile()){
+                throw new IOException("Could not create file " + file);
+            }
         }
-        System.out.println("Person to be serialized: " + person);
-        //serialization
+        Person person = new Person("Kitty");
+        System.out.println("Before serialization:" + person);
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(person);
         oos.flush();
         oos.close();
 
-        //deserialization
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-        Person dePerson = (Person)ois.readObject();
+        Person dp = (Person)ois.readObject();
         ois.close();
-        System.out.println("Person deserialized :" + dePerson);
+        System.out.println("After deserialization: " + dp);
     }
     
 }
