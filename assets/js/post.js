@@ -46,8 +46,8 @@ $(document).ready(function(){
         }
 
         function genTmpl(){
-            var h1txt = $('h1').text();
-            var tmpl = '<ul><li class="h1"><a href="#">' + h1txt + '</a></li>';
+            //var h1txt = $('h1').text();
+            var tmpl = '';
 
             var heading = initHeading();
             var h2 = heading.h2;
@@ -62,7 +62,7 @@ $(document).ready(function(){
                     }
                 }
             }
-            tmpl += '</ul>';
+            //tmpl += '</ul>';
 
             return tmpl;
         }
@@ -113,7 +113,7 @@ $(document).ready(function(){
                 var menuIndexTop = $('#menuIndex').offset().top;
                 var menuIndexLeft = $('#menuIndex').offset().left;
 
-                $(window).scroll(function(){
+               /* $(window).scroll(function(){
                     waitForFinalEvent(function(){
                         var nowTop = $(window).scrollTop();
                         var length = scrollTop.length;
@@ -147,7 +147,7 @@ $(document).ready(function(){
                         $('#menuIndex li').eq(index-1).addClass('on');
                     });
                 });
-
+*/
                 $(window).resize(function(){
                     $('#menuIndex').css({
                         position:'static'
@@ -164,7 +164,7 @@ $(document).ready(function(){
             })
 
             //用js计算屏幕的高度
-            $('#menuIndex').css('max-height',$(window).height()-80);
+            //$('#menuIndex').css('max-height',$(window).height()-80);
         }
     })();
 });

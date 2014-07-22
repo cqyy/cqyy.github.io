@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title:	Java无锁队列与栈的实现 
 description: "Java无锁机制的使用，以及实现无锁的队列和栈。"
 modified: 2014-01-16

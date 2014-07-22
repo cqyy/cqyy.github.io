@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: 红黑树(Java)
 description: red-black tree:concept and implementation
 modified: 2014-02-25
@@ -12,7 +12,7 @@ share: true
 
 红黑树的概念以及java的实现
 
-## 红黑树简介
+##一、红黑树简介
 红黑树是二叉搜索树的一个改进版本。在每个节点上加入了一个颜色属性。通过约束每个根节点到叶子节点上的颜色，保证任何一条路径都不会比其他路径的两倍长。从而使得红黑树的高度接近于log(n)（n为节点数量）。
 
 红黑树需要满足下面五个属性：
@@ -77,7 +77,7 @@ public class RBTree {
 {% endhighlight %}
 
 
-## 红黑树基本变换
+##二、红黑树基本变换
 
 ### 1、旋转（rotate）
 
@@ -194,7 +194,7 @@ public class RBTree {
     }
 {% endhighlight %}
 
-### 4.最小值（minmun）
+### 4、最小值（minmun）
 和最大值相反。
 - code 8，最小值：
 
@@ -212,7 +212,7 @@ public class RBTree {
     }
 {% endhighlight %}
 
-### 5.搜索节点（find）
+### 5、搜索节点（find）
 搜索给定值是否存在树中。
 - code 9，搜索节点：
 >
@@ -233,7 +233,7 @@ public class RBTree {
     }
 {% endhighlight %}
 
-## 插入操作（Insert）
+##三、插入操作（Insert）
 红黑树的插入和普通二叉搜索树插入有几个区别：1）需要将新节点初始化为红色；2）插入之后可能会破坏树结构，使得无法满足要求的5个属性，故需要对树进行修复。插入操作首先找到应该插入的位置，插入之后调用了insertFixUp对树进行修复。
 
 在进行修复时，在可以直接修复的情况下则进行修复，在无法直接修复的情况下，则是将其转换为可以修复的情况。
@@ -370,7 +370,7 @@ private void insertFixUp(RBTreeNode node) {
 
 其中，case1之后可能还会是case1，所以需要结束本次循环。而对于case2，其变换结果就是变成case3。
 
-## 4.红黑树删除
+##四、红黑树删除
  在删除时，首先选择该节点中的一个节点替换该节点，在需要进行修复的时候，需要确定修复的起点。
 
 若待删除的节点颜色为**红色**，有两种情况：1）左右子树皆为NIL；2）左右子树皆不为NIL（因为它不能有红色直接后继节点）。
@@ -537,7 +537,7 @@ private void insertFixUp(RBTreeNode node) {
     }
 {% endhighlight %}
 
-## 5.测试
+##五、测试
 下面附上测试代码：
 
 - code 14，测试代码
