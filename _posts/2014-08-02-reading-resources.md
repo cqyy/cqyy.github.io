@@ -21,9 +21,9 @@ Java应用中，经常需要一些资源文件，例如配置文件，图片等�
 
 该类是java提供的配置管理的类，完整包名为java.util.Properties。主要有如下几个方法：
 
-{% highlight %}
+{% highlight java %}
 
-void load(InputStream in);      //读取java格式的配置文件
+void load(InputStream in);        //读取java格式的配置文件
 void loadFromXml(InputStream in); //读取XML格式的配置文件
 String getProperty(String key);   //获取一个配置项的值
 
@@ -32,15 +32,17 @@ String getProperty(String key);   //获取一个配置项的值
 ###Java格式的配置文件
 
 exp:
->name = kali
->age = 24
+{% highlight xml %}
+name = kali
+age = 24
+{% endhighlight %}
 
 每一个配置项占一行，key在前，value在后，以‘=’分隔。
 
 ###XML格式的配置文件
 
 exp:
-{% highlight %}
+{% highlight xml %}
 
 <properties>
 <entry key="name">kali</entry>
@@ -52,7 +54,7 @@ exp:
 ##资源读取
 
 示例：
-{% highlight %}
+{% highlight java %}
 
 	public class ReadingResource {
     private static final String FILE_NAME = "/app.properties";
@@ -82,8 +84,14 @@ exp:
 
 值得注意的是，如果资源文件没有找到，getResourceAsStream()以及getResource()方法会返回null，而不是抛出受检查的异常。
 
-另外一点就是资源文件的名字（例子中FILE_NAME）,若名字以"/"开头，则表示配置文件在resources文件夹下，否则表示在resources对应的类的包名解析为目录下。
+另外一点就是资源文件的名字（例子中FILE_NAME）,`若名字以"/"开头`，则表示配置文件在resources文件夹下，否则表示在resources对应的类的包名解析为目录下。
 
-例如，上例子中的资源文件只需要放到resouces文件夹下即可，如果FILE_NAME="app.properties",该类的包名为com.test，那么配置文件的存放路径就需要为/resources/com/test/app.properties
+例如，上例子中的资源文件只需要放到resouces文件夹下即可，如果
+
+`FILE_NAME="app.properties"`
+
+并且该类的包名为com.test，那么配置文件的存放路径就需要为:
+
+`/resources/com/test/app.properties`
 
 EOF.
