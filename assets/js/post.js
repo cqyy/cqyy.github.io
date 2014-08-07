@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	$('pre').addClass('prettyprint linenums'); 
+	//$('pre').addClass('prettyprint linenums'); 
 	prettyPrint();
 	
 	$('.post-body a').each(function(index,element){
