@@ -4,22 +4,33 @@
     </p>
     <ul class="social-mini">
         <li>
-            <a href="https://twitter.com/intent/tweet?text=&quot;{{ page.title }}&quot;%20{{ site.url }}{{ page.url }}%20via%20&#64;{{ site.owner.twitter }}"
-            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" data-toggle="tooltip" title="Share on Twitter" itemprop="Twitter">
-                <i class="icon-twitter"></i>
-            </a>
+           <html xmlns:wb=“http://open.weibo.com/wb”>
+		   <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+		   <wb:share-button appkey="1seJoH" addition="simple" type="button"></wb:share-button>
         </li>
-        <li>
-            <a  href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}"
-            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" data-toggle="tooltip" title="Share on Facebook" itemprop="Facebook">
-                <i class="icon-facebook"></i>
-            </a>
-        </li>
-        <li>
-            <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}"
-           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" data-toggle="tooltip" title="Share on Google plus" itemprop="GooglePlus">
-                <i class="icon-google-plus"></i>
-            </a>
-        </li>
+		<li>
+		<script type="text/javascript">
+(function(){
+var p = {
+url:location.href,
+showcount:'0',/*是否显示分享总数,显示：'1'，不显示：'0' */
+desc:'',/*默认分享理由(可选)*/
+summary:'',/*分享摘要(可选)*/
+title:'',/*分享标题(可选)*/
+site:'',/*分享来源 如：腾讯网(可选)*/
+pics:'', /*分享图片的路径(可选)*/
+style:'102',
+width:68,
+height:25
+};
+var s = [];
+for(var i in p){
+s.push(i + '=' + encodeURIComponent(p[i]||''));
+}
+document.write(['<a version="1.0" class="qzOpenerDiv" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?',s.join('&'),'" target="_blank">分享</a>'].join(''));
+})();
+</script>
+<script src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111201" charset="utf-8"></script>
+		</li>
     </ul>
 </div>
