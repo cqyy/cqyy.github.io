@@ -28,7 +28,7 @@ Listing One shows a Timer, which can be used in networking applications to handl
 -------
 Listing One - Timer.java
 
-{% hightlight java %}
+{% highlight java %}
 
 /** 
   * The Timer class allows a graceful exit when an application
@@ -134,7 +134,7 @@ The server is relatively simple - it's a single-threaded application, which simu
 
 Listing Two
 
-{% hightlight java %}
+{% highlight java %}
 import java.net.*;
 import java.io.*;
 
@@ -196,7 +196,7 @@ public class SimpleClient
 ------
 Listing Three
 
-{% hightlight java %}
+{% highlight java %}
 import java.net.*;
 import java.io.*;
 
