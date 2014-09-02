@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Handling network timeouts in Java
+title: MathJax
 description: "Handling network timeouts in Java"
 modified: 2014-08-27
 tags: [java,application]
@@ -8,6 +8,7 @@ imagefeature: cs-4.jpg
 category: Javadevelopment
 comments: true
 share: true
+mathjax: true
 ---
 ddddddddddd
 
@@ -15,6 +16,6 @@ ddddddddddd
 
 - t = 2% * max memory
 - e = $$ round(log_{2}t) $$
-- capacity = $$\frac{e}{sizeOfReference}$$
+- capacity = $$ \frac{e}{sizeOfReference} $$
 
 EOF.
