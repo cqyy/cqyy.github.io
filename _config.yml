@@ -191,7 +191,7 @@ prose:
         field:
           element: "checkbox"
           label: "MathJax"
-          value: false
+          value: true
       - name: "featured"
         field:
           element: "checkbox"
