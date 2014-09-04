@@ -4,7 +4,7 @@ title: Handling network timeouts in Java
 description: "Handling network timeouts in Java"
 modified: 2014-08-27
 tags: [java,application]
-imagefeature: cs-4.jpg
+imagefeature: cs-8.jpg
 category: Javadevelopment
 comments: true
 share: true
