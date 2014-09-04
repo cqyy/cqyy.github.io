@@ -4,7 +4,7 @@ title: Hadoop中的事件驱动模型
 description: "Event-driven model in hadoop"
 modified: 2014-09-03
 tags: [java,application]
-imagefeature: cs-8.jpg
+imagefeature: cs-9.jpg
 category: Javadevelopment
 comments: true
 share: true
@@ -124,13 +124,14 @@ public class BasicEventDrivenDemo {
 
 该模型中，首先注册相应事件类型的处理器，然后就可以从中根据事件类型获取处理器来处理主要处理的事件。
 这种方式解决了调用器的热插拔，使得事件的处理与事件处理的调用分离。
+
 但是这种方式有几个缺陷：
 
 - 调用者需要根据事件类型去获取相应的事件处理器
 - 事件的调用与事件的处理仍然是在一个线程中，调用者仍然需要在调用处理结束之后才能返回
 - 事件处理器无法生成新的事件等待接下来的处理
 
-##异步派发器。
+##异步派发器
 
 
 异步派发器即拥有自己的处理线程，新事件得到时，仅仅将该事件放在待处理事件堆中，该调用即可返回，而后续的事件处理将会有处理线程来进行。
@@ -143,6 +144,7 @@ public class BasicEventDrivenDemo {
 可以看到，这种模式下，事件发起者发起事件与事件的真正处理是异步的，它们在不同的线程中执行。
 
 异步派发器：
+
 {% highlight java %}
 public class AsyncDispatcher implements Dispatcher,Service {
 
@@ -231,13 +233,14 @@ public class AsyncDispatcher implements Dispatcher,Service {
 }
 {% endhighlight %}
 
-这段代码中，重点为：
 
 - getEventHandler()返回一个内部类的对象，而该对象处理事件仅仅是将其放入事件队列中；
 - 派发器维护了一组线程，即事件处理线程；这些线程的行为从createHandThread()中可以看到，它们不断的从事件队列中获取事件并使用dispath()方法进行处理
 - handlerMap建立了事件类型与事件处理器的映射
 
+
 异步派发器使用Demo：
+
 {% highlight java %}
 public class EventDrivenTest {
 
@@ -363,7 +366,9 @@ public class EventDrivenTest {
 }
 {% endhighlight %}
 
+
 主函数中，生成了一个管理器，该管理器内部有一个异步派发器。初始化过程中，对Job以及Task类型注册了相应的处理器，然后启动。之后发送了两个Job事件。
+
 
 在JobEventHandler中，该事件的处理是重新对每一个Task发送Task的事件。
 
