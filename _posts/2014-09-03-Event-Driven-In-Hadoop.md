@@ -4,7 +4,7 @@ title: Hadoop中的事件驱动模型
 description: "Event-driven model in hadoop"
 modified: 2014-09-03
 tags: [java,application]
-imagefeature: cs-9.jpg
+imagefeature: cs-8.png
 category: Javadevelopment
 comments: true
 share: true
