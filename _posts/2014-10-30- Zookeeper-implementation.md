@@ -46,5 +46,52 @@ Paxos是用于处理分布式情况下，基于消息传递的一种一致性算
 
 > **P1** - 任何Acceptor必须接受它收到的第一个提议值。
 
-但如此又出现一个新问题，即可能存在多个Proposal在几乎同时发起提议，使得很难达成
+但如此又出现一个新问题，即可能存在多个Proposal在几乎同时发起提议，使得任何一个值都无法得到大多是Acceptor的接受。所以，就需要Acceptor能够接受多个提议值。为了标志每一个提议，不至于混乱，给每一个提议都附加一个唯一的数字。而一旦Acceptor可以接受多个值，为了使得Leaner能够正确的获得提议值，只需要保证所有被接受的提议有相同的值即可。所以，有：
+
+> **P2** - 若通过了一个值为v的提议，则任何通过的、拥有更高编号的提议值也为v。
+
+故，只要满足P1和P2，就能使得一致性算法的三个要求得到满足。
+
+又由于任何一个得到通过的提议，至少会被一个Acceptor接受，故通过如下要求即可满足P2：
+
+> **P2a** - 若通过了一个值为v的提议，则任何Acceptor接受的任何拥有更高编号的提议的值都为v。
+
+对于Acceptor，它并不知道其他Acceptor接受到得值，故只有对Proposal进行约束，才能同时满足P2a和P1。例如，存在一个尚未接受过任何提议Acceptor，另有一个由于某些原因停止，然后重启的Proposal发出了一个更高编号但值不一致的提议。按照P1，该Acceptor将接受该值，但是如此又将违背P2a。所以，通过如下对P2a的约束加强:
+
+> **P2b** - 若通过了一个值为v的提议，则任何Proposal发布的编号更高的提议值都为v。
+
+而由于任意的大多是集合都至少会有一个共有的Acceptor，可以通过如下约束满足p2b：
+
+> **P2c** - 对于任意v和n,若发布了一个编号为n，值为v的提议，就存在一个大多数Acceptor集合，要么a)该集合中所有Acceptor尚未接受过任何编号比n小的提议，要么b)v为该集合中编号最大但小于n的提议的值。
+
+P2c给出了满足P2b的一个具体的实现要求。要满足P2c，Proposal在发布提议前，就需要对当前Acceptor状态进行分析，以决定发布提议的值。
+
+Paxos通过如下算法满足要求：
+
+* 1.Proposal首先选择一个提议编号n,并向所有Acceptor发送`prepare`请求，Acceptor回复：
+	* a)承诺不再接受任何编号小于n的提议
+	* b)若曾经接受过比编号比n小的提议，回复这些提议中编号最大的提议
+* 2.若Proposal接受到了大多数Acceptor的回复，则发布编号为n的提议。若Acceptor回复之前没有接受过提议，则该提议的值为该Proposal选择的值，否则为之前通过的，编号小于n中最大提议的值。
+
+上述为Proposal的算法，Acceptor算法如下：
+
+> **P1a** - Acceptor接受一个编号为n的提议，当前仅当其没有回复过编号大于n的prepare请求。
+
+综上，Paxos算法有如下两个阶段组成：
+
+- **Phase 1** 
+	- a）Proposer选择一个提议编号，并向一个Acceptor大多是集合发送prepare请求
+	- b) 若Acceptor接受到一个编号比之前接收到的任何Prepare编号都打得请求，则向Proposer回复，并保证不再接受任何编号小于n的提议。
+
+- **Phase 2**
+	- a)若Proposer接受到来自大多数Acceptor的回复，则根据回复决定最终发布提议的值并发布提议。
+	- b)若Acceptor接收到一个提议，只要尚未回复过编号比该提议大的prepare请求，则接受该值。
+
+### Learning A Chosen Value
+
+最简单的办法就是向所有Acceptor发送请求，根据回复内容选择大多是Acceptor的值即可。
+
+## Zookeeper Implementation
+
+![Component of Zookeeper](/images/zookeeper/component.jpg)
 
