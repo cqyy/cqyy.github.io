@@ -33,12 +33,12 @@ Paxos是用于处理分布式情况下，基于消息传递的一种一致性算
 
 并且任意角色之间都能通过发送消息进行通信，并且通信过程中不存在拜占庭错误（即消息被篡改的问题）。并且有：
 
-- 任意角色允许以任意速度进行，可以通知，可以重启。
+- 任意角色允许以任意速度进行，可以停止，可以重启。
 - 角色之间的消息可以传输任意长的时间，可以重复发送，可以丢失，但不能被篡改。
 
 ### Choosing a value
 
-选值即是在众多提议的值中，选值一个值，并保证该值能够被Learner正确的获取到。
+选值是指在众多提议的值中，选择一个值，并保证该值能够被Learner正确的获取到。
 
 对于只有一个Acceptor情况下，该Acceptor只选择第一个到达的提议值即可满足要求，但却无法实现高可靠性。为了实现高可靠性，Paxos采取多个Acceptor的办法，存储多个提议值的副本，避免了单点故障问题。对于某一个提议，Proposer将自己的提议值发送给每一个Acceptor，Acceptor可以选择接受或者拒绝。只有当`大多数`Acceptor接受该值时，便可以认为该值得到`通过`,也就是最终选择了该值。其中，大多是指超过半数的Acceptors。
 
@@ -46,7 +46,7 @@ Paxos是用于处理分布式情况下，基于消息传递的一种一致性算
 
 > **P1** - 任何Acceptor必须接受它收到的第一个提议值。
 
-但如此又出现一个新问题，即可能存在多个Proposer在几乎同时发起提议，使得任何一个值都无法得到大多是Acceptor的接受。所以，就需要Acceptor能够接受多个提议值。为了标志每一个提议，不至于混乱，给每一个提议都附加一个唯一的数字。而一旦Acceptor可以接受多个值，为了使得Leaner能够正确的获得提议值，只需要保证所有被接受的提议有相同的值即可。所以，有：
+但如此又出现一个新问题，即可能存在多个Proposer在几乎同时发起提议，使得任何一个值都无法得到大多数Acceptor的接受。所以，就需要Acceptor能够接受多个提议值。为了标志每一个提议，不至于混乱，给每一个提议都附加一个唯一的编号。而一旦Acceptor可以接受多个值，为了使得Leaner能够正确的获得提议值，只需要保证所有被接受的提议有相同的值即可。所以，有：
 
 > **P2** - 若通过了一个值为v的提议，则任何通过的、拥有更高编号的提议值也为v。
 
@@ -56,7 +56,7 @@ Paxos是用于处理分布式情况下，基于消息传递的一种一致性算
 
 > **P2a** - 若通过了一个值为v的提议，则任何Acceptor接受的任何拥有更高编号的提议的值都为v。
 
-对于Acceptor，它并不知道其他Acceptor接受到得值，故只有对Proposer进行约束，才能同时满足P2a和P1。例如，存在一个尚未接受过任何提议Acceptor，另有一个由于某些原因停止，然后重启的Proposer发出了一个更高编号但值不一致的提议。按照P1，该Acceptor将接受该值，但是如此又将违背P2a。所以，通过如下对P2a的约束加强:
+对于Acceptor，它并不知道其他Acceptor接受到得值，故只有对Proposer进行约束，才能同时满足P2a和P1。例如，存在一个尚未接受过任何提议的Acceptor，另有一个由于某些原因停止，然后重启的Proposer发出了一个更高编号但值不一致的提议。按照P1，该Acceptor将接受该值，但是如此又将违背P2a。所以，通过如下对P2a的约束加强:
 
 > **P2b** - 若通过了一个值为v的提议，则任何Proposer发布的编号更高的提议值都为v。
 
@@ -101,7 +101,7 @@ Zookeeper通过副本数据库，在多个节点中保持相同的数据来提�
 
 Zookeeper中每一个Server都能提供服务，Client只需要连接到其中任意一个Server节点即可。
 
-在算法上，Zookeeper对Paxos算法进行看些简化，采用单Proposer以及本地读方式，牺牲了一定的一致性而获取高读性能。在Zookeeper中，每一个Server都充当Paxos中的Acceptor以及Learner角色，称为`follower`，并通过算法动态的选举一个Server充当Proposer,称为`Leader`。所有的write请求都将发送到leadere节点进行协调处理，而follower将接受来自Client的请求，处理并同意来自Leader的状态变更请求。
+在算法上，Zookeeper对Paxos算法进行了简化，采用单Proposer以及本地读方式，牺牲了一定的一致性而获取高读性能。在Zookeeper中，每一个Server都充当Paxos中的Acceptor以及Learner角色，称为`follower`，并通过算法动态的选举一个Server充当Proposer,称为`Leader`。所有的write请求都将发送到Leader节点进行协调处理，而follower将接受来自Client的请求，处理并同意来自Leader的状态变更请求。
 
 ### Request Process
 
@@ -111,7 +111,7 @@ Zookeeper中每一个Server都能提供服务，Client只需要连接到其中�
 
 ### Atomic Broadcast
 
-Leader执行完write操作后，会将新状态变化通过Atomic Broadcast发送给其他的Server。Zab使用了简单的大多是仲裁方式，所以Zab只有在大多数Server正确时才能正常工作（例如2f+1个节点的就能，至少需要f+1个节点状态正常）。
+Leader执行完write操作后，会将新状态变化通过Atomic Broadcast发送给其他的Server。Zab使用了简单的大多是仲裁方式，所以Zab只有在大多数Server正确时才能正常工作（例如2f+1个节点的集群，至少需要f+1个节点状态正常）。
 
 ### Replicated Database
 
