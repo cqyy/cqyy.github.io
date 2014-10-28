@@ -117,6 +117,7 @@ Unlock
 {% endhighlight %}
 
 该种方式有如下好处:
+
 - 1.znode的删除只会唤醒一个客户端，从而避免的羊群效应(herb effect).
 - 2.不存在轮休或者超时。
 - 3.可以通过查看Zookeeper数据，获知锁的数量，解锁以及debug等。
