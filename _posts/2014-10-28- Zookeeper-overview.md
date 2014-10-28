@@ -53,7 +53,7 @@ sync()方法。
 
 Zookeeper数据模型为一个简单的文件系统，仅支持数据的完全读写操作，以及以Key层级组织的Key/Value表。
 
-<figure><img src="/images/zookeeper/datamodel.png"/></figure>
+<figure><img src="/images/zookeeper/datamodel.jpg"/></figure>
 
 图中的节点称为***`znode`***,是客户端通过API直接操作的数据对象。与通用的文件系统不同的是，znode并不是用于通用数据存储，而是用于映射客户端应用先关的抽象概念，一般与协助服务使用的元数据一致。如上图，有两棵子树，分别用于app1(app1)和app2（/app2）。App1的子树实现了一个简单的组成员管理协议：每一个客户端进程pi在/app1子树下创建一个znode p_i,该节点在pi运行期间一直存在。当然，Zookeeper也允许客户端存储一些元数据或配置信息等。
 
