@@ -28,17 +28,17 @@ Zookeeper还提供了Watch服务，使得客户端可以对数据进行缓存，
 
 ## Consistency Guarantees
 
-- **Sequential Consistency** - 对于各客户端，更新操作将以客户端发出的顺序执行。
+- Sequential Consistency - 对于各客户端，更新操作将以客户端发出的顺序执行。
 
-- **Atomicity** - 更新操作要么成功，要么失败，不存在中间状态（即不存在部分更新的结果）。
+- Atomicity - 更新操作要么成功，要么失败，不存在中间状态（即不存在部分更新的结果）。
 
-- **Single System Image** - 无论客户端连接到哪一个Zookeeper服务，它都将看到相同的服务视图。
+- Single System Image - 无论客户端连接到哪一个Zookeeper服务，它都将看到相同的服务视图。
 
-- **Reliability** - 一旦更新操作完成，它的结果将持久的存在，直到被更新。该特性有如下两个推理：
+- Reliability - 一旦更新操作完成，它的结果将持久的存在，直到被更新。该特性有如下两个推理：
 	- 1.只要客户端收到了更新成功标志，该更新操作将已经成功提交。但是，由于某些原因（网络故障，超时等等），客户端可能无法收到成功标志。
 	- 2.对于每一个客户端，它永远不会读取到回滚的数据（即不会读取到比其之前读取的更老的数据）。
 
-- **Timeliness** - 系统对任意客户端的视图都能在一时间范围内更新到最新状态。在该范围内，客户端能看到系统的状态变化，或者发现系统故障。
+- Timeliness - 系统对任意客户端的视图都能在一时间范围内更新到最新状态。在该范围内，客户端能看到系统的状态变化，或者发现系统故障。
 
 通过这些一致性保证，应用能够很容易的实现例如选举、栅栏、队列以及读写互斥锁等高层功能。
 
@@ -68,13 +68,13 @@ Zookeeper中，有两种类型的znode:
 
 如下是Zookeeper提供的主要API:
 
-- **create(path,data,flags)** - 创建一个路径为path的znode，并以data数据进行填充。flags使得客户端可以选择znode的类型以及是否使用sequential选项。
-- **delete(path,version)** - 删除指定版本的znode。
-- **exists(path,watch)** - 判断指定路径的znode是否存在。watch用于设置是否在该路径上设置watch服务。
-- **getData(path,watch)** - 返回指定路径的znode信息，包括版本，元数据，数据等。
-- **setData(path,data,version)** - 若当前znode的版本匹配，则设置其数据为data。
-- **getChildren(path,watch)** - 返回自定路径下的所有znode集合。
-- **sync(path)** - 等待该操作前的所有更新操作传播到调用该方法的客户端连接的服务器上。一般现调用sync，然后调用read,该read操作将保证读取到sync之前所有更新操作的最新结果。该方法用于得到全局一致性。
+- create(path,data,flags) - 创建一个路径为path的znode，并以data数据进行填充。flags使得客户端可以选择znode的类型以及是否使用sequential选项。
+- delete(path,version) - 删除指定版本的znode。
+- exists(path,watch) - 判断指定路径的znode是否存在。watch用于设置是否在该路径上设置watch服务。
+- getData(path,watch) - 返回指定路径的znode信息，包括版本，元数据，数据等。
+- setData(path,data,version) - 若当前znode的版本匹配，则设置其数据为data。
+- getChildren(path,watch) - 返回自定路径下的所有znode集合。
+- sync(path) - 等待该操作前的所有更新操作传播到调用该方法的客户端连接的服务器上。一般现调用sync，然后调用read,该read操作将保证读取到sync之前所有更新操作的最新结果。该方法用于得到全局一致性。
 
 ## Examples of primitives
 
@@ -111,7 +111,7 @@ Lock
 	if n is lowest znode in C, exit
 	p = znode in C ordered just before n
 	if exists(p, true) wait for watch event
-	goto 2
+	goto 3
 Unlock
 	delete(n)
 {% endhighlight %}
