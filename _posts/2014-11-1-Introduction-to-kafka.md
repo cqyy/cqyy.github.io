@@ -40,7 +40,7 @@ Kafka使用Zookeeper进行各个角色的协作，避免的单点问题。Kafka�
 
 ![data structure](/images/kafka/ds.jpg)
 
-当Consumer或者Broker启动时，需要在Zookeeper对应目录(consumer为图中的*/consumer/[groupID]/IDs* ）下创建一个Consumer registry或Broker registry实体。在Broker registry(例 */Brokers/IDs/ID_1* ）中，记录了该Broker的host以及端口，存储的topic以及partition。在Consumer registry中(例 */Consumers/groupid_1/IDs/ID_1*)中，记录了其订阅的topic，并通过路径即可知道其所属的组。Ownership Registry(例*/Consumer/GroupID/owners/Topic_1*)中，记录了当前Consumer Group对各个Partition消息消费的偏移量。途中紫色为persistent类型节点，橘黄色为ephemeral类型节点。每个Consumer对所有的Broker以及Consumer进行监控，一旦发现变化，就进行负载调整。
+当Consumer或者Broker启动时，需要在Zookeeper对应目录(consumer为图中的*/consumer/[groupID]/IDs* ）下创建一个Consumer registry或Broker registry实体。在Broker registry(例 */Brokers/IDs/ID_1* ）中，记录了该Broker的host以及端口，存储的topic以及partition。在Consumer registry中(例 */Consumers/groupid_1/IDs/ID_1*)中，记录了其订阅的topic，并通过路径即可知道其所属的组。Ownership Registry(例*/Consumer/GroupID/owners/Topic_1*)中，记录了当前Consumer Group对各个Partition消息消费的偏移量。图中紫色为persistent类型节点，橘黄色为ephemeral类型节点。每个Consumer对所有的Broker以及Consumer进行监控，一旦发现变化，就进行负载调整。
 
 对于消息的类型，是由Consumer确定的，Producer发送消息时，首先计算消息的partition，然后根据Zookeeper记录，发送到指定的Broker中。
 
@@ -62,9 +62,8 @@ Kafka使用Zookeeper进行各个角色的协作，避免的单点问题。Kafka�
 	- let O
 	- p = the offset of partition p stored in the offset registry
 	- invoke a thread to pull data in partition p from offset Op
-	}
-
-}
+>	}
+>}
 
 算法首先删除当前Consumer的partition信息，然后读取所有的每一个topic的Partition以及Consumer信息，计算出该topic各个Consumer平均的Partition数量N。之后将partition平均分成N份，分配一份给当前Consumer，并修改Zookeeper中的记录信息。重复知道处理完所有Consumer。
 
