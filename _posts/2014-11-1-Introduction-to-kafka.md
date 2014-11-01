@@ -105,7 +105,7 @@ public class TestProducer {
         producer.close();
     }
 }
-{% endhighlight %)
+{% endhighlight %}
 
 首先，Producer需要进行一些配置设置：
 
