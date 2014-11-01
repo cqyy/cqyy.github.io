@@ -18,7 +18,7 @@ Kafka是由Apache开发的，以统一、低延迟、高吞吐量为目标的分
 
 ## 基本架构
 
-![architercure](images/kafka/architecture.jpg "architecture")
+![architercure](/images/kafka/architecture.jpg "architecture")
 
 首先，Kafka将传输的数据按类型进行分类，称为`topic`。`Producer`可以往某个topic发送消息，`broker`接受消息并缓存。`Consumer`可以订阅消息类型，并通过pull方式从各个Broker获取订阅topic的消息。
 
@@ -26,7 +26,7 @@ Kafka中个，Consumer由Consumer Group进行组织，一个Consumer属于一个
 
 Kafka存储使用了一种简单却有效的方式。每一个partition对应于一组逻辑日志，而每一个逻辑日志物理上由一组大小相同（一般1G)的分片文件组成。Producer往某一个Partition发送某条消息，broker首先将其缓存到内存中，并等待一定时间或者缓存消息数量达到一定限度时，再把消息以追加的方式追加到分片文件上。消息只有在刷入磁盘后，才会对Consumer可用。通过分片文件中的逻辑偏移量对消息进行寻址。
 
-![log](images/kafka/kafka_log.png "log")
+![log](/images/kafka/kafka_log.png "log")
 
 各个Broker在内存中，通过一个有序偏移量列表，维护各个消息逻辑偏移到物理文件的映射。该偏移量表中，记录每一个分片文件第一条消息的逻辑偏移量。Consumer进行读取时，需要将读取的开始偏移量以及读取的数据量包含在pull请求中，broker根据偏移量索引逐步找到物理文件并读取消息消息返回，Consumer收取到该消息之后，将计算出下一次读取时的偏移量，并由于下一次的pull请求中。
 
@@ -38,7 +38,7 @@ Kafka使用Zookeeper进行各个角色的协作，避免的单点问题。Kafka�
 - 2.触发负载调整
 - 3.维护消费映射关系以及各个partition的消费位移关系
 
-![data structure](images/kafka/ds.jpg)
+![data structure](/images/kafka/ds.jpg)
 
 当Consumer或者Broker启动时，需要在Zookeeper对应目录(consumer为图中的*/consumer/[groupID]/IDs* ）下创建一个Consumer registry或Broker registry实体。在Broker registry(例 */Brokers/IDs/ID_1* ）中，记录了该Broker的host以及端口，存储的topic以及partition。在Consumer registry中(例 */Consumers/groupid_1/IDs/ID_1*)中，记录了其订阅的topic，并通过路径即可知道其所属的组。Ownership Registry(例*/Consumer/GroupID/owners/Topic_1*)中，记录了当前Consumer Group对各个Partition消息消费的偏移量。途中紫色为persistent类型节点，橘黄色为ephemeral类型节点。每个Consumer对所有的Broker以及Consumer进行监控，一旦发现变化，就进行负载调整。
 
