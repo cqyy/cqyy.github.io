@@ -1,8 +1,8 @@
 ---
 layout: post
-title: YARN Capacity Scheduler
+title: Capacity Scheduler in YARN
 description: "A brief introduction to capacity scheduler in YARN"
-modified: 2014-11-1
+modified: 2014-11-11
 tags: [分布式]
 imagefeature: cs-12.jpg
 category: Distributed
@@ -22,10 +22,10 @@ CS需要在保证各个部门资源情况下，共享集群。其主要思想是
 
 CS支持如下特性:
 
-- 层级队列 - 支持层级队列，提供更多的控制。
+- 层级队列 - 支持层级队列，提供对资源更细粒度的控制。
 - 容量保证 - 管理员可以配置各队列设置资源的最低保证和最高使用上限，提交到该队列的所用应用将共享这些资源。
-- 安全保证 - 各队列有严格的访问控制，控制各个用户对各个队列的提价应用权限、应用查看权限和修改权限。
-- 弹性 - 空闲的队列的资源可以被其它资源紧缺的队列使用，提高整体资源使用率。而一旦该队列中有应用提价，其它资源将释放资源归还给该队列。
+- 安全保证 - 各队列有严格的访问控制，控制各个用户对各个队列应用的提交权限、查看权限和修改权限。
+- 弹性 - 空闲的队列的资源可以被其它资源紧缺的队列使用，提高整体资源使用率。而一旦该队列中有应用提交，其它资源将释放资源归还给该队列。
 - 多重租约 - 提供多种限制，防止单个应用、单个用户或单个队列使用过多资源。
 - 操作性
 	- 运行时配置 - 队列定义以及容量、ACL等属性支持运行时配置。
@@ -46,28 +46,23 @@ YARN调度的基本单位为队列。各队列有如下属性：
 
 ### 启用CS
 
-配置*etc/hadoop/conf/yarn-site.xml*中的如下项。
+配置`etc/hadoop/conf/yarn-site.xml`中的如下项。
 
-|Property|Value|
-|:---|---:|
-|yarn.resourcemanager.scheduler.class|org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler|
+{% highlight xml %}
+<property>
+  <name>yarn.resourcemanager.scheduler.class</name>  <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value>
+</property>
+{% endhighlight %}
 
 ### 设置队列
 
-YARN调度的基本单位为队列。各队列的容量规定了提交到该队列的应用可以使用整个集群资源量的百分比。根据使用集群资源的的部门、组织以及用户，可以将队列设置为反应数据库结构、资源要求以及访问控制的层级结构。
+YARN调度的基本单位为队列。各队列的容量规定了提交到该队列的应用可以使用整个集群资源量的百分比。根据使用集群资源的的部门、组织以及用户分布情况，设置相应的队列结构和资源分配。
 
 例如，假设某一公司有三个部门：工程部，支持部以及市场部。工程部有开发和QA两个团队。支持部有培训和服务两个团队。市场部分为销售和广告两个团队。下图反应了改层级关系：
 
 ![capacity scheduler queues](/images/cs/capacity_scheduler_queues.png "capacity_scheduler_queue")
 
-各子队列通过*capacity-scheduler.xml*中的*yarn.scheduler.capacity.<queue-path>.queues*属性与父队列建立关联。顶级队列“支持”，“工程”，以及“市场”队列可以通过如下配置与root队列建立关联（root队列为整个集群的顶级队列，不属于任何组织）:
-
-*Property*: yarn.scheduler.capacity.root.queues
-
-*Value*: support,engineering,marketing
-
-Example:
-
+各子队列通过`capacity-scheduler.xml`中的`yarn.scheduler.capacity.<queue-path>.queues`属性与父队列建立关联。顶级队列“支持”，“工程”，以及“市场”队列可以通过如下配置与root队列建立关联（root队列为整个集群的顶级队列，不属于任何组织）:
 {% highlight xml %}
 <property>
   <name>yarn.scheduler.capacity.root.queues</name>
