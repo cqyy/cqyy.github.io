@@ -97,7 +97,7 @@ ACLs可以用于对用户和管理员对队列的访问进行控制。只能将�
 
 如下配置将"support"队列的访问权限授权给用户"sherlock"、"pacioli"以及"cfo-group"组中的所有成员：
 
-
+{% highlight xml %}
 <property>
 	<name>yarn.scheduler.capacity.root.support.acl_submit_applications</name>
 	<value>sherlock,pacioli cfo-group</value>
@@ -265,7 +265,7 @@ Setting Application Limits
 
 {% highlight xml %}
 <property>
-	<name>yarn.scheduler.capacity.<queue-path>.maximum-applications</name>
+	<name>yarn.scheduler.capacity.<queue-path>.maximum-app****lications</name>
 	<value>absolute-capacity * yarn.scheduler.capacity.maximum-applications
 </value>
 
