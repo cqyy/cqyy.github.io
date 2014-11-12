@@ -101,6 +101,7 @@ ACLs可以用于对用户和管理员对队列的访问进行控制。只能将�
 <property>
 	<name>yarn.scheduler.capacity.root.support.acl_submit_applications</name>
 	<value>sherlock,pacioli cfo-group</value>
+</property>
 {% endhighlight %}
 
 还可以设置单独的ACL，控制队列的管理员。队列管理员可以向该队列提交应用，杀死队列中的应用以及获取队列中任何应用的信息。
@@ -143,6 +144,7 @@ ACLs可以用于对用户和管理员对队列的访问进行控制。只能将�
 <property>
 	<name>yarn.scheduler.capacity.root.engineering.qa.capacity</name>
 	<value>80</value>
+</property>
 {% endhighlight %}
 
 `[Note]`
@@ -196,6 +198,7 @@ ACLs可以用于对用户和管理员对队列的访问进行控制。只能将�
 <property>
 	<name>yarn.scheduler.capacity.root.engineering.development.maximum-capacity</name>
 	<value>40</value>
+</property>
 {% endhighlight %}
 
 设置了该属性之后，开发部队列的用户依然能够使用比其容量120GB更多的资源，但是他们不会使用超过；工程部父队列总容量的40%，也就是240GB。
@@ -211,6 +214,7 @@ Capacity和Maximun-capacity属性可以用于控制整个部门以及子部门�
 <property>
 	<name>yarn.scheduler.capacity.root.support.services.minimum-user-limit-percent</name>
 	<value>20</value>
+</property>
 {% endhighlight %}
 
 下图展示了随着提交Job的用户增多，队列资源是如何调整的：
@@ -223,6 +227,7 @@ Capacity和Maximun-capacity属性可以用于控制整个部门以及子部门�
 <property>
 	<name>yarn.scheduler.capacity.root.support.user-limit-factor</name>
 	<value>0.5</value>
+</property>
 {% endhighlight %}
 
 默认值"1"表示队列中任何用户最多可以使用该队列的配置容量。这可以防止单个队列中的用户独占整个集群的资源。该值设置为"2"表示限制最大资源使用量为当前队列配置容量的2倍。设置为"0.5"表示任何用户最多使用队列资源的一半。
@@ -259,6 +264,7 @@ Setting Application Limits
 <property>
 	<name>yarn.scheduler.capacity.maximum-applications</name>
 	<value>1000</value>
+</property>
 {% endhighlight %}
 
 任何队列中同时运行应用限制都是该限制的一部分。该限制为硬限制，意味着达到或超过该限制后，任何新应用都将被拒绝。该限制可以通过如下方式为各子队列单独设置：
@@ -266,8 +272,9 @@ Setting Application Limits
 {% highlight xml %}
 <property>
 	<name>yarn.scheduler.capacity.<queue-path>.maximum-app****lications</name>
-	<value>absolute-capacity * yarn.scheduler.capacity.maximum-applications
-</value>
+	<value>absolute-capacity * yarn.scheduler.capacity.maximum-applications</value>
+</property>
+{% endhighlight %}
 
 如下配置为设置ApplicationMaster最大使用的资源量，默认为10%。
 
@@ -275,12 +282,14 @@ Setting Application Limits
 <property>
 	<name>yarn.scheduler.capacity.maximum-am-resource-percent</name>
 	<value>0.1</value>
-
+</property>
+{% endhighlight %}
 同样，该属性也能单独为各队列进行设置。
 {% highlight xml %}
 <property>
 	<name>yarn.scheduler.capacity.<queue-path>.maximum-am-resource-percent</name>
 	<value>0.1</value>
+</property>
 {% endhighlight %}
 
 
@@ -301,6 +310,7 @@ Update: 当前抢占存在bug.
 <property>
 	<name>yarn.resourcemanager.scheduler.monitor.enable</name>
 	<value>true</value>
+</property>
 {% endhighlight %}
 
 将该值设置为true以启动抢占机制。浙江启动一系列周期性监控。
@@ -308,27 +318,31 @@ Update: 当前抢占存在bug.
 <property>
 	<name>yarn.resourcemanager.scheduler.monitor.policies</name>
 	<value>org.apache.hadoop.yarn.server.resourcemanager.monitor.capacity.ProportionalCapacityPreemptionPolicy</value>
+</property>
 {% endhighlight %}
 
 SchedulingEditPolicy为当前唯一可用的抢占机制。
-
+{% highlight xml %}
 <property>
 	<name>yarn.resourcemanager.monitor.capacity.preemption.monitoring_interval</name>
 	<value>3000</value>
+</property>
 {% endhighlight %}
 
 以毫秒为单位。
-
+{% highlight xml %}
 <property>
 	<name>yarn.resourcemanager.monitor.capacity.preemption.max_wait_before_kill</name>
 	<value>15000</value>
+</property>
 {% endhighlight %}
 
 以毫秒为单位，表示从请求抢占到杀死container之间最大时间。将该值设置为较大值将给应用更多时间对抢占请求作出反应。
-
+{% highlight xml %}
 <property>
 	<name>yarn.resourcemanager.monitor.capacity.preemption.total_preemption_per_round</name>
 	<value>0.1</value>
+</property>
 {% endhighlight %}
 
 一次抢占中，最多抢占资源的最大百分比。
