@@ -233,7 +233,6 @@ public class AsyncDispatcher implements Dispatcher,Service {
 }
 {% endhighlight %}
 
---------
 
 - getEventHandler()返回一个内部类的对象，而该对象处理事件仅仅是将其放入事件队列中
 - 派发器维护了一组线程，即事件处理线程；这些线程的行为从createHandThread()中可以看到，它们不断的从事件队列中获取事件并使用dispath()方法进行处理
@@ -366,8 +365,6 @@ public class EventDrivenTest {
     }
 }
 {% endhighlight %}
-
------
 
 主函数中，生成了一个管理器，该管理器内部有一个异步派发器。初始化过程中，对Job以及Task类型注册了相应的处理器，然后启动。之后发送了两个Job事件。
 
