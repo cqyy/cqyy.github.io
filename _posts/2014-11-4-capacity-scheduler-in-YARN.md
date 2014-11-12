@@ -97,9 +97,11 @@ ACLs可以用于对用户和管理员对队列的访问进行控制。只能将�
 
 如下配置将"support"队列的访问权限授权给用户"sherlock"、"pacioli"以及"cfo-group"组中的所有成员：
 
-*Property*: yarn.scheduler.capacity.root.support.acl_submit_applications
 
-*Value*: sherlock,pacioli cfo-group
+<property>
+	<name>yarn.scheduler.capacity.root.support.acl_submit_applications</name>
+	<value>sherlock,pacioli cfo-group</value>
+{% endhighlight %}
 
 还可以设置单独的ACL，控制队列的管理员。队列管理员可以向该队列提交应用，杀死队列中的应用以及获取队列中任何应用的信息。
 
@@ -114,6 +116,7 @@ ACLs可以用于对用户和管理员对队列的访问进行控制。只能将�
 ### 配置队列资源
 
 管理员使用容量属性给队列分配资源百分比。如下配置将集群资源按6:1:3的比率分配给工程部以及市场部。
+
 {% highlight xml %}
 <property>
 	<name>yarn.scheduler.capacity.root.engineering.capacity</name>
@@ -128,6 +131,7 @@ ACLs可以用于对用户和管理员对队列的访问进行控制。只能将�
 	<name>yarn.scheduler.capacity.root.marketing.capacity</name>
 	<value>30</value>
 </property>
+{% endhighlight %}
 
 假设工程部需要将资源以1:4的比率分配给开发部和QA部，则可以如下设置：
 
@@ -140,6 +144,7 @@ ACLs可以用于对用户和管理员对队列的访问进行控制。只能将�
 	<name>yarn.scheduler.capacity.root.engineering.qa.capacity</name>
 	<value>80</value>
 {% endhighlight %}
+
 `[Note]`
 任何层次所有容量之和为100%、并且，任何层次中的任何队列容量不小于1%。
 
