@@ -12,7 +12,7 @@ share: true
 
 #FairScheduler主要类类图
 
-![Main Classes in FS](images/fs/classes.jpg "Main Classes in FS")
+![Main Classes in FS](/images/fs/classes.jpg "Main Classes in FS")
 
 YARN中调度器均采用队列方式进行资源的细化管理，FS亦不例外。FS采用三层调度模型：队列 => 应用 => Container。可以通过配置文件对FS队列结构以及各个队列的属性进行限制。配置示例如下:
 
